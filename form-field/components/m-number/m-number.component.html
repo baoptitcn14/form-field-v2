@@ -1,0 +1,71 @@
+<ng-container *ngIf="itemData && itemData.icon">
+  <label for="{{ itemData.id }}" class="form-label">{{ itemData.name }}</label>
+
+  <div class="input-group has-validation">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <i class="{{ itemData.icon }}"></i>
+      </span>
+    </div>
+    <input
+      type="number"
+      min="{{ itemData.min }}"
+      max="{{ itemData.max }}"
+      class="form-control form-control-{{ inputSize }} text-right"
+      [ngClass]="{
+        'is-invalid': errors || !itemData.valid,
+        'is-valid': !errors && itemData.valid
+      }"
+      [disabled]="isDisabled"
+      [readOnly]="itemData.readonly"
+      [(ngModel)]="value"
+      (ngModelChange)="onChangeValue()"
+      id="{{ itemData.id }}"
+    />
+
+    <!-- hien thi loi -->
+    <small class="invalid-feedback" *ngFor="let error of listErrors">
+      {{ error.message }}
+    </small>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="itemData && !itemData.icon">
+  <label for="{{ itemData.id }}" class="form-label">{{ itemData.name }}</label>
+
+  <input
+    type="number"
+    min="{{ itemData.min }}"
+    max="{{ itemData.max }}"
+    class="form-control form-control-{{ inputSize }} text-right"
+    [ngClass]="{
+      'is-invalid': errors || !itemData.valid,
+      'is-valid': !errors && itemData.valid
+    }"
+    [disabled]="isDisabled"
+    [(ngModel)]="value"
+    (ngModelChange)="onChangeValue()"
+    id="{{ itemData.id }}"
+  />
+
+  <!-- hien thi loi -->
+  <small class="invalid-feedback" *ngFor="let error of listErrors">
+    {{ error.message }}
+  </small>
+
+  <small class="invalid-feedback" *ngFor="let error of itemData.listErrors">
+    {{ error.message }}
+  </small>
+
+  <small hidden></small>
+</ng-container>
+
+<ng-container *ngIf="!itemData">
+  <input
+    type="number"
+    class="form-control form-control-{{ inputSize }} text-right"
+    [disabled]="isDisabled"
+    [(ngModel)]="value"
+    (ngModelChange)="onChangeValue()"
+  />
+</ng-container>

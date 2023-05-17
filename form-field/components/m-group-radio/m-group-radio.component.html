@@ -1,0 +1,22 @@
+<label class="form-label"> {{ itemData?.name }}</label>
+<div class="form-group">
+  <ng-container *ngFor="let c of itemData?.items">
+    <div class=" {{ c?.inline ? 'form-check-inline' : 'form-check' }}">
+      <input
+        type="radio"
+        [readOnly]="c?.readonly"
+        [value]="c.value"
+        (change)="onChangeValue()"
+        [(ngModel)]="value"
+        type="radio"
+        name="{{ c?.inputName }}"
+        class="form-check-input"
+        id="{{ c?.id }}"
+      />
+
+      <label class="form-check-label" for="{{ c?.id }}">
+        {{ c?.name }}
+      </label>
+    </div>
+  </ng-container>
+</div>

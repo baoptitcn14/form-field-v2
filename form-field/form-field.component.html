@@ -1,0 +1,18 @@
+<div id="{{ rootData?.id }}" class="root">
+  <h5 *ngIf="rootData?.name" class="root-name {{ rootData?.alignName }}">
+    {{ rootData?.name }}
+  </h5>
+
+  <div class="list-item">
+    <div class="row {{ rootData?.class }}">
+      <ng-container *ngFor="let item of rootData?.items">
+        <m-base-input
+          class="{{ item?.class }} mb-10"
+          [itemData]="item"
+          [rootId]="rootId"
+          (onTButtonClickEvent)="onTButtonClick($event)"
+        ></m-base-input>
+      </ng-container>
+    </div>
+  </div>
+</div>

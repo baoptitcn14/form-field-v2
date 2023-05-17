@@ -1,0 +1,85 @@
+<div class="table-component">
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <m-search *ngIf="itemData?.search" [(ngModel)]="search"></m-search>
+      <m-filters [filters]="itemData?.t_filters"></m-filters>
+    </div>
+    <div class="actions">
+      <m-button
+        *ngIf="itemData && itemData.t_createButton"
+        [button]="itemData.t_createButton.button"
+        (onClickEvent)="onClickAction(itemData.t_createButton, null)"
+      ></m-button>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover table-sm">
+      <thead>
+        <tr class="table-secondary">
+          <th
+            width="{{ header?.width }}"
+            scope="col"
+            class="{{ header.class }}"
+            *ngFor="let header of itemData?.t_headers"
+          >
+            {{ header.name }}
+          </th>
+          <th
+            *ngIf="itemData?.t_actions"
+            width="{{ itemData?.t_actions?.width }}"
+          ></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of listRecord">
+          <td
+            class="align-middle {{ header.class }}"
+            *ngFor="let header of itemData?.t_headers"
+          >
+            <span
+              class="{{ header.class }}"
+              *ngIf="!header.type || header.type == TYPE_COLUMN.TEXT"
+              [innerHTML]="(header.transformText 
+              ? header.transformText[record.value[header.key]] 
+              : record.value[header.key]) | highlighter : search"
+            ></span>
+            <span>
+              <m-text
+                [(ngModel)]="record.value[header.key]"
+                [inputSize]="'sm'"
+                *ngIf="header.type == TYPE_COLUMN.I_TEXT"
+              ></m-text>
+
+              <m-number
+                [(ngModel)]="record.value[header.key]"
+                [inputSize]="'sm'"
+                *ngIf="header.type == TYPE_COLUMN.I_NUMBER"
+              ></m-number>
+            </span>
+            <span class="actions">
+              <!-- <ng-container
+                *ngIf="record.actions && record.actions[header.key]"
+              >
+                <m-button
+                  class="ms-2"
+                  *ngFor="let ac of record.actions[header.key]"
+                  [button]="ac"
+                  (onClickEvent)="onClickAction(ac, record)"
+                ></m-button>
+              </ng-container> -->
+            </span>
+          </td>
+          <td class="align-middle {{ itemData?.t_actions?.class }}" *ngIf="itemData?.t_actions">
+            <ng-container *ngFor="let ac of itemData?.t_actions?.list">
+              <m-button
+                [button]="ac.button"
+                (onClickEvent)="onClickAction(ac, record)"
+              ></m-button>
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

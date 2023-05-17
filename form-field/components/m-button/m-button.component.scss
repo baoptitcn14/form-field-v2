@@ -1,0 +1,14 @@
+button,
+.btn {
+    i.fa {
+        &.left {
+            margin-right: 3px;
+        }
+        &.right {
+            margin-left: 3px;
+        }
+        &.auto {
+            margin: auto;
+        }
+    }
+}

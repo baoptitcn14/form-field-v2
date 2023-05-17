@@ -1,0 +1,14 @@
+<div class="form-group {{ itemData?.inline ? 'form-check-inline' : 'form-check' }}">
+  <input
+    [disabled]="isDisabled"
+    [readOnly]="itemData?.readonly"
+    [(ngModel)]="value"
+    (ngModelChange)="onChangeValue()"
+    type="checkbox"
+    class="form-check-input"
+    id="{{ itemData?.id }}"
+  />
+  <label class="form-check-label" for="{{ itemData?.id }}">{{
+    itemData?.name
+  }} {{ labelText }}</label>
+</div>

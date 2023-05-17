@@ -1,0 +1,17 @@
+
+.input-group {
+    position: relative;
+
+    input.form-control {
+        pointer-events: none;
+    }
+
+    .mat-date-range-input {
+        position: absolute;
+        left: 55px;
+        top: 10px;
+        width: calc(100% - 129px);
+        z-index: 1;
+        background-color: #fff;
+    }
+}

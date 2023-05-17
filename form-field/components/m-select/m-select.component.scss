@@ -1,0 +1,61 @@
+.navbar {
+    align-items: initial;
+    flex-wrap: nowrap;
+    .dropdown {
+        flex: auto;
+
+        > input {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            background-color: #ffffff;
+
+            &.has-icon {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+
+        .dropdown-menu {
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+
+            .dropdown-item {
+                min-height: 28px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+
+}
+
+:host(::ng-deep) {
+    .dropdown-menu {
+        .dropdown-item {
+            .highlighted-text {
+                background-color: violet;
+        
+                span:not(:has(.highlighted-text)) {
+                    background-color: #ffffff;
+                }
+            }
+
+            &:hover {
+                .highlighted-text {
+                    span:not(:has(.highlighted-text)) {
+                        background-color: #e9ecef;
+                    }
+                }
+            }
+
+            &.active {
+                .highlighted-text {
+                    span:not(:has(.highlighted-text)) {
+                        background-color: #007bff;
+                    }
+                }
+            }
+        }
+    }
+}
+

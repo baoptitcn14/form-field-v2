@@ -1,0 +1,86 @@
+<label for="{{ itemData?.id }}" class="form-label">
+  {{ itemData?.name }}
+</label>
+
+<div class="input-group has-validation navbar p-0">
+  <div class="input-group-prepend" *ngIf="itemData?.icon">
+    <span class="input-group-text">
+      <i class="{{ itemData?.icon }}"></i>
+    </span>
+  </div>
+
+  <div class="dropdown" #dd>
+    <input
+      type="text"
+      data-toggle="dropdown"
+      aria-expanded="false"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid': errors,
+        'is-valid': !errors,
+        'has-icon': itemData?.icon
+      }"
+      [disabled]="isDisabled"
+      readonly
+      id="{{ itemData?.id }}"
+    />
+
+    <div class="items-selected">
+      <code class="item" *ngFor="let item of listItemShow; let index = index">
+        <span class="item-name">{{ item.name }}</span>
+        <i
+          class="fa fa-close"
+          *ngIf="item.id != FAKE"
+          (click)="onRemoveOption(index)"
+        ></i>
+      </code>
+    </div>
+
+    <div
+      class="dropdown-menu w-100 hold-on-click"
+      #ddm
+      clickOutside
+      (outSide)="out($event, dd, ddm)"
+      (inSide)="in($event, dd, ddm)"
+    >
+      <a class="dropdown-item" *ngIf="itemData?.search">
+        <m-search [(ngModel)]="search"></m-search>
+      </a>
+      <a
+        class="dropdown-item"
+        [ngClass]="{ active: this.isSelectAll }"
+        *ngIf="itemData?.selectAll && !search"
+        (click)="onSelectAll()"
+      >
+        Tất cả
+      </a>
+      <ng-container *ngFor="let option of listOption; let index = index">
+        <a
+          class="dropdown-item"
+          [ngClass]="{ active: option.active }"
+          (click)="onSelect(option)"
+        >
+          <span
+            *ngIf="option.name"
+            [innerHTML]="option.name | highlighter : search"
+          ></span>
+        </a>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- fix css -->
+  <span hidden></span>
+  <!-- end fix css -->
+
+  <!-- <div class="input-group-append" data-toggle="dropdown"> -->
+    <span class="input-group-text" data-toggle="dropdown">
+      <i class="fa fa-caret-down"></i>
+    </span>
+  <!-- </div> -->
+
+  <!-- hien thi loi -->
+  <small class="invalid-feedback" *ngFor="let error of listErrors">
+    {{ error.message }}
+  </small>
+</div>

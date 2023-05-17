@@ -1,0 +1,60 @@
+<!-- <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+    <input matStartDate formControlName="start" placeholder="Start date" />
+    <input matEndDate formControlName="end" placeholder="End date" />
+  </mat-date-range-input>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
+
+<!-- <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')"
+    >Invalid start date</mat-error
+  >
+  <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')"
+    >Invalid end date</mat-error
+  > -->
+
+<label for="{{ itemData?.id }}" class="form-label">
+  {{ itemData?.name }}
+</label>
+
+<div class="input-group has-validation">
+  <div class="input-group-prepend" (click)="picker.open()">
+    <span class="input-group-text">
+      <i class="fa fa-calendar"></i>
+    </span>
+  </div>
+
+  <input
+    type="text"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': errors, 'is-valid': !errors }"
+    [disabled]="isDisabled"
+    [(ngModel)]="value"
+    id="{{ itemData?.id }}"
+  />
+
+  <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+    <input
+      readonly
+      matStartDate
+      formControlName="start"
+      placeholder="Start date"
+      (click)="picker.open()"
+    />
+    <input readonly matEndDate formControlName="end"  (click)="picker.open()" placeholder="End date" />
+  </mat-date-range-input>
+
+  <!-- fix css -->
+  <span hidden></span>
+  <!-- end fix css -->
+
+  <div class="input-group-append" (click)="clear()">
+    <span class="input-group-text">
+      <i class="fa fa-remove"></i>
+    </span>
+  </div>
+
+  <!-- hien thi loi -->
+  <small class="invalid-feedback" *ngFor="let error of listErrors">
+    {{ error.message }}
+  </small>
+</div>
+<mat-date-range-picker #picker></mat-date-range-picker>

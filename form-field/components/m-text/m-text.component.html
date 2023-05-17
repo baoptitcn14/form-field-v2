@@ -1,0 +1,57 @@
+<ng-container *ngIf="itemData && itemData.icon">
+  <label for="{{ itemData.id }}" class="form-label">{{ itemData.name }}</label>
+
+  <div class="input-group has-validation">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <i class="{{ itemData.icon }}"></i>
+      </span>
+    </div>
+    <input
+      type="{{ itemData.hiddenText ? 'password' : 'text' }}"
+      class="form-control form-control-{{inputSize}}"
+      [ngClass]="{ 'is-invalid': errors, 'is-valid': !errors}"
+      [disabled]="isDisabled"
+      [readOnly]="itemData.readonly"
+      [(ngModel)]="value"
+      (ngModelChange)="onChangeValue()"
+      readonly
+      id="{{ itemData.id }}"
+    />
+
+    <!-- hien thi loi -->
+    <small class="invalid-feedback" *ngFor="let error of listErrors">
+      {{ error.message }}
+    </small>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="itemData && !itemData.icon">
+  <label for="{{ itemData.id }}" class="form-label">{{ itemData.name }}</label>
+
+  <input
+  type="{{ itemData.hiddenText ? 'password' : 'text' }}"
+    class="form-control form-control-{{inputSize}}"
+    [ngClass]="{ 'is-invalid': errors, 'is-valid': !errors}"
+    [disabled]="isDisabled"
+    [readOnly]="itemData.readonly"
+    [(ngModel)]="value"
+    (ngModelChange)="onChangeValue()"
+    id="{{ itemData.id }}"
+  />
+
+  <!-- hien thi loi -->
+  <small class="invalid-feedback" *ngFor="let error of listErrors">
+    {{ error.message }}
+  </small>
+</ng-container>
+
+<ng-container *ngIf="!itemData">
+  <input
+    type="text"
+    class="form-control form-control-{{inputSize}}"
+    [disabled]="isDisabled"
+    [(ngModel)]="value"
+    (ngModelChange)="onChangeValue()"
+  />
+</ng-container>

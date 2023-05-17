@@ -1,0 +1,13 @@
+<div id="{{ groupData?.id }}" class="group">
+  <h5 class="group-name {{ groupData?.alignName }}">{{ groupData?.name }}</h5>
+
+  <div class="list-item row">
+    <ng-container *ngFor="let item of groupData?.items">
+      <m-base-input
+        class="{{ item?.class }} mb-3"
+        [itemData]="item"
+        [rootId]="rootId"
+      ></m-base-input>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<label class="form-label"> {{ itemData?.name }}</label>
+<div class="form-group">
+  <ng-container *ngFor="let c of itemData?.items">
+    <m-checkbox
+      (valueChangeEmitter)="onChangeValue()"
+      [(ngModel)]="c.value"
+      [itemData]="c"
+      [rootId]="rootId"
+      [disabled]="c.disabled"
+    >
+    </m-checkbox>
+  </ng-container>
+</div>

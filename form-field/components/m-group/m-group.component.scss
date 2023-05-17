@@ -1,0 +1,19 @@
+.group {
+    &-name {
+        font-size: 20px;
+
+        &.center {
+            text-align: center;
+        }
+        &.left {
+            text-align: left;
+        }
+        &.right {
+            text-align: right;
+        }
+    }
+
+    .list-item {
+        padding: 15px;
+    }
+}

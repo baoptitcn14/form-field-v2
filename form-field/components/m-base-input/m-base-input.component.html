@@ -1,0 +1,120 @@
+<ng-container [ngSwitch]="itemData.type">
+  <!-- GROUP -->
+  <ng-container *ngSwitchCase="'group'">
+    <m-form-field [rootData]="itemData" [rootId]="rootId"></m-form-field>
+  </ng-container>
+
+  <!-- TEXT -->
+  <ng-container *ngSwitchCase="'text'">
+    <m-text
+      [(ngModel)]="itemData.value"
+      [itemData]="itemData"
+      [inputSize]="itemData.inputSize"
+      [rootId]="rootId"
+      [disabled]="itemData.disabled"
+    >
+    </m-text>
+  </ng-container>
+
+  <!-- NUMBER -->
+  <ng-container *ngSwitchCase="'number'">
+    <m-number
+      [(ngModel)]="itemData.value"
+      [itemData]="itemData"
+      [rootId]="rootId"
+      [disabled]="itemData.disabled"
+    >
+    </m-number>
+  </ng-container>
+
+  <!-- DATE -->
+  <ng-container *ngSwitchCase="'date'">
+    <m-date
+      [(ngModel)]="itemData.value"
+      [itemData]="itemData"
+      [rootId]="rootId"
+      [disabled]="itemData.disabled"
+    >
+    </m-date>
+  </ng-container>
+
+  <!-- DATE RANGE -->
+  <ng-container *ngSwitchCase="'date-range'">
+    <m-date-range
+      [(ngModel)]="itemData.value"
+      [itemData]="itemData"
+      [rootId]="rootId"
+      [disabled]="itemData.disabled"
+    >
+    </m-date-range>
+  </ng-container>
+
+  <!-- SELECT -->
+  <ng-container *ngSwitchCase="'select'">
+    <m-select
+      [(ngModel)]="itemData.value"
+      [itemData]="itemData"
+      [inputSize]="itemData.inputSize"
+      [rootId]="rootId"
+      [disabled]="itemData.disabled"
+    >
+    </m-select>
+  </ng-container>
+
+  <!-- SELECT -->
+  <ng-container *ngSwitchCase="'multiple-select'">
+    <m-multiple-select
+      [(ngModel)]="itemData.value"
+      [itemData]="itemData"
+      [rootId]="rootId"
+      [disabled]="itemData.disabled"
+    >
+    </m-multiple-select>
+  </ng-container>
+
+  <!-- CHECKBOX -->
+  <ng-container *ngSwitchCase="'checkbox'">
+    <m-checkbox
+      [(ngModel)]="itemData.value"
+      [itemData]="itemData"
+      [rootId]="rootId"
+      [disabled]="itemData.disabled"
+    >
+    </m-checkbox>
+  </ng-container>
+
+  <!-- GROUP CHECKBOX -->
+  <ng-container *ngSwitchCase="'group_checkbox'">
+    <m-group-checkbox
+      [(ngModel)]="itemData.value"
+      [itemData]="itemData"
+      [rootId]="rootId"
+      [disabled]="itemData.disabled"
+    ></m-group-checkbox>
+  </ng-container>
+
+  <!-- GROUP RADIO -->
+  <ng-container *ngSwitchCase="'group_radio'">
+    <m-group-radio
+      [(ngModel)]="itemData.value"
+      [itemData]="itemData"
+      [rootId]="rootId"
+      [disabled]="itemData.disabled"
+    ></m-group-radio>
+  </ng-container>
+
+  <!-- FILE -->
+  <ng-container *ngSwitchCase="'file'">
+    <m-files
+      [(ngModel)]="itemData.value"
+      [itemData]="itemData"
+      [rootId]="rootId"
+      [disabled]="itemData.disabled"
+    ></m-files>
+  </ng-container>
+
+  <!-- TABLE -->
+  <ng-container *ngSwitchCase="'table'">
+    <m-table [itemData]="itemData" (onTButtonClickEvent)="onTButtonClick($event)"></m-table>
+  </ng-container>
+</ng-container>

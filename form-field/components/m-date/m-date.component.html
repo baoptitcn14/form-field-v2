@@ -1,0 +1,41 @@
+<label for="{{ itemData?.id }}" class="form-label">
+  {{ itemData?.name }}
+</label>
+
+<div class="input-group has-validation">
+  <div class="input-group-prepend" (click)="picker.open()">
+    <span class="input-group-text">
+      <i class="fa fa-calendar"></i>
+    </span>
+  </div>
+
+  <input
+    type="text"
+    class="form-control"
+    readonly
+    (click)="picker.open()"
+    [matDatepicker]="picker"
+    [ngClass]="{ 'is-invalid': errors, 'is-valid': !errors }"
+    [disabled]="isDisabled"
+    [(ngModel)]="value"
+    (ngModelChange)="onChangeValue()"
+    id="{{ itemData?.id }}"
+  />
+
+  <!-- fix css -->
+  <span hidden></span>
+  <!-- end fix css -->
+
+  <div class="input-group-append" (click)="clear()">
+    <span class="input-group-text">
+      <i class="fa fa-remove"></i>
+    </span>
+  </div>
+
+  <!-- hien thi loi -->
+  <small class="invalid-feedback" *ngFor="let error of listErrors">
+    {{ error.message }}
+  </small>
+</div>
+
+<mat-datepicker #picker></mat-datepicker>

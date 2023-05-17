@@ -1,0 +1,81 @@
+.navbar {
+    align-items: initial;
+
+    .dropdown {
+        flex: auto;
+
+        > input {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            background-color: #ffffff;
+
+            &.has-icon {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+
+        .dropdown-menu {
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+        }
+    }
+}
+
+:host(::ng-deep) {
+    .dropdown-menu {
+        .dropdown-item {
+            .highlighted-text {
+                background-color: violet;
+
+                span:not(:has(.highlighted-text)) {
+                    background-color: #ffffff;
+                }
+            }
+
+            &:hover {
+                .highlighted-text {
+                    span:not(:has(.highlighted-text)) {
+                        background-color: #e9ecef;
+                    }
+                }
+            }
+
+            &.active {
+                .highlighted-text {
+                    span:not(:has(.highlighted-text)) {
+                        background-color: #007bff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.items-selected {
+    display: inline-flex;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    right: 36px;
+    max-height: 22px;
+    margin-top: -11px;
+    z-index: 2;
+    width: max-content;
+
+    i.fa-close {
+        cursor: pointer;
+    }
+
+    .item {
+        border: 1px solid #e83e8c;
+        border-radius: 3px;
+        margin-left: 5px;
+        padding: 0 5px;
+
+        &-name {
+            padding-right: 5px;
+        }
+    }
+}

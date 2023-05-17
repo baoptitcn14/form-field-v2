@@ -1,0 +1,47 @@
+<label for="exampleFormControlFile1">{{ itemData?.name }}</label>
+
+<div class="input-group mb-3">
+  <div class="fileinput fileinput-exists">
+    <span class="btn btn-outline-secondary btn-sm border-radius-none btn-file">
+      <span class="fileinput-new" hidden></span>
+      <span class="fileinput-exists">
+        {{ isNew ? "Chọn file" : "Thay đổi" }}
+      </span>
+      <input type="hidden" value="" name="" />
+      <input
+        type="file"
+        [multiple]="itemData?.multiple"
+        (change)="onChangeValue($event)"
+        id="{{ itemData?.id }}"
+      />
+    </span>
+
+    <span class="list-file">
+      <a
+        [href]="f._url"
+        target="_blank"
+        rel="noopener noreferrer"
+        *ngFor="let f of value; let index = index"
+        matTooltip="{{ message }}"
+      >
+        <code class="fileinput">
+          <span class="fileinput-name">{{ f.name }}</span>
+          <i class="fa fa-close" (click)="onRemoveFile(index, $event)"></i>
+        </code>
+      </a>
+    </span>
+  </div>
+
+  <!-- <div class="custom-file">
+    <input
+      [multiple]="itemData?.multiple"
+      type="file"
+      class="custom-file-input"
+      id="{{ itemData?.id }}"
+      (change)="onChangeValue($event)"
+    />
+    <label class="custom-file-label" for="{{ itemData?.id }}">{{
+      displayValue ? displayValue : "Choose file"
+    }}</label>
+  </div> -->
+</div>

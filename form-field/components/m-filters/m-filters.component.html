@@ -1,0 +1,7 @@
+<div class="filters">
+  <ng-container *ngFor="let filter of filters?.list">
+    <m-filter [filter]="filter" [(ngModel)]="filter.value"></m-filter>
+  </ng-container>
+
+  <m-button (onClickEvent)="onFilter()" *ngIf="filters?.multi" [code]="'filter'" class="ml-3"></m-button>
+</div>

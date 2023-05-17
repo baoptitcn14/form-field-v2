@@ -1,0 +1,80 @@
+<label for="{{ itemData?.id }}" class="form-label" [hidden]="itemData?.hidden">
+  {{ itemData?.name }}
+</label>
+
+<!-- <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+    <li><a class="dropdown-item active" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#">Separated link</a></li>
+  </ul>
+</div> -->
+
+<div class="input-group has-validation navbar p-0" [hidden]="itemData?.hidden">
+  <div class="input-group-prepend" *ngIf="itemData?.icon">
+    <span class="input-group-text">
+      <i class="{{ itemData?.icon }}"></i>
+    </span>
+  </div>
+
+  <div class="dropdown">
+    <input
+      type="text"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+      class="form-control form-control-{{inputSize}}"
+      [ngClass]="{
+        'is-invalid': errors,
+        'is-valid': !errors,
+        'has-icon': itemData?.icon
+      }"
+      [disabled]="isDisabled || itemData?.disabled"
+      readonly
+      [value]="displayValue"
+      id="{{ itemData?.id }}"
+    />
+
+    <div class="dropdown-menu w-100">
+      <a class="dropdown-item" *ngIf="itemData?.search">
+        <m-search [(ngModel)]="search"></m-search>
+      </a>
+      <a
+        class="dropdown-item"
+        [ngClass]="{ active: !value }"
+        *ngIf="itemData?.emptyOption"
+        (click)="onSelectEmpty()"></a>
+
+      <ng-container *ngFor="let option of listOption">
+        <a
+          class="dropdown-item {{ option.classCss }}"
+          [ngClass]="{ active: option.active }"
+          (click)="onSelect(option)"
+          *ngIf="option.name"
+          [innerHTML]="option.name | highlighter : search"
+        >
+        {{ option | json }}
+      </a>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- fix css -->
+  <span hidden></span>
+  <!-- end fix css -->
+
+  <!-- <div class="input-group-append" data-toggle="dropdown"> -->
+    <span class="input-group-text" data-bs-toggle="dropdown">
+      <i class="fa fa-caret-down"></i>
+    </span>
+  <!-- </div> -->
+
+  <!-- hien thi loi -->
+  <small class="invalid-feedback" *ngFor="let error of listErrors">
+    {{ error.message }}
+  </small>
+</div>
